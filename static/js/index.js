@@ -26,6 +26,7 @@ $( document ).ready(function() {
 				var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: uluru });
 				var marker = new google.maps.Marker({position: uluru, map: map});
 
+				$('#ipadd').html(data.query);
 				$("#as").html(data.as);
 				$("#isp").html(data.isp);
 				$("#latlng").html(data.lat+'/'+data.lon);
