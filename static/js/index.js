@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
 		
 	$('#submit').on('click', function(event) {
-		//event.preventDefault();
+		event.preventDefault();
 		var ip=$('#ip').val();
 		if(validate(ip)){
 			url1="/locate/"+ip;
