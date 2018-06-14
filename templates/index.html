@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  
+    <title>IP Location API</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWh7E-G5TGau8UPzE2fK0Ld60cDh_tVBI"></script>
+
+    <script src="{{ url_for('static',filename='js/index.js')}}"></script>
+    
+  </head>
+  <body>
+    
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details for IP: <span id="ipadd"></span></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#mapsection">Map</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane container active" id="details">
+                <br>
+                <table class="table table-bordered table-striped text-center">
+                  <thead>
+                    <th>Property</th>
+                    <th>Value</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>AS</td>
+                        <td id="as">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>ISP</td>
+                        <td id="isp">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Lat/Long</td>
+                        <td id="latlng">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>City</td>
+                        <td id="city">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Region</td>
+                        <td id="region">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Country</td>
+                        <td id="country">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Time Zone</td>
+                        <td id="timezone">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>ZIP</td>
+                        <td id="zip">lorem</td>
+                    </tr>  
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="tab-pane container fade" id="mapsection">
+                <br>
+                <div id="map" style="padding:0 0 ;height:70vh; width:auto"></div>
+              </div>
+            </div>
+            
+           
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="page-header">
+      <h1 class="project-name">IP Location API</h1>
+      <h2 class="project-tagline">A simple API to lookup location of IP addresses and get other details.</h2>
+          <a href="https://github.com/abhishekbalam/openlicensesapi" class="btn">View on GitHub</a>
+        
+    </section>
+
+    <section class="main-content">
+      <h1 id="why-to-use-this">Why to use this?</h1>
+
+<p>Sometimes it is needed to quickly check location of IP addresses in the case of a security breach, or when getting to know the origin of client IP for your App/Websites.</p>
+
+<p>To do so, one has to sign up with sites who provide this service for a fee and require several more steps, wasting time that could be used for developement.</p>
+
+<p>Also after getting the location, this site also provides a map to check for physical locations on the globe.</p>
+
+<h1 id="how-to-use-it">How to use it?</h1>
+
+<p>There are 2 ways to use this:</p>
+
+<h2 id="1-enter-the-ip-below-to-look-up-location-quickly">1. Enter the IP below to look up location quickly</h2>
+<br>
+<div class="col-md-6 offset-md-3 ">
+<form>
+ 	<div class="form-group">
+ 		<label for="ip">Enter IP Address:</label>
+ 		<input type="text" class="form-control" id="ip" />
+	</div>
+	<div class="form-group text-center">
+		<button id="submit" class="btn btn-lg btn-success">Send</button>
+	</div>
+</form>
+</div>
+
+<h2 id="access-the-api">2. Access the API</h2>
+
+<p>Allowed HTTPs methods:</p>
+<ul>
+  <li><code class="highlighter-rouge">GET</code></li>
+  <!-- <li><code class="highlighter-rouge">POST</code></li> -->
+</ul>
+
+<p>Description of usual server responses:</p>
+<ul>
+  <li>200<code class="highlighter-rouge">OK</code> : The request was successful .</li>
+  <li>400 <code class="highlighter-rouge">Bad Request</code> : The request could not be understood or was missing required parameters.</li>
+  <li>403 <code class="highlighter-rouge">Forbidden</code> : Access denied.</li>
+  <li>404 <code class="highlighter-rouge">Not Found</code> : Resource was not found.</li>
+  <li>405 <code class="highlighter-rouge">Method Not Allowed</code> : Requested method is not supported for resource.</li>
+  <li>500 <code class="highlighter-rouge">Internal Server Error</code> : Some problem on the server side, please <a href="https://github.com/abhishekbalam/openlicensesapi/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc">contact me</a> if you see this.</li>
+</ul>
+
+<h1 id="api--requests">API  Requests</h1>
+
+<p>They should be in the following format:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET iplocationapi.herokuapp.com/<span class="o">{</span><span class="nb">ip</span><span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="url-parameters">URL Parameters</h2>
+
+<h3 id="--required">- Required</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">ip</code> : This is the ip address you want to get the details for</li>
+</ul>
+<!-- 
+<h3 id="--optional">- Optional</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">type</code> : This is an optional parameter used to determine the type of response needed which is either:</li>
+</ul> -->
+
+<h1 id="acknowledgement">Acknowledgement</h1>
+
+<p>Thanks to :</p>
+<ul>
+  <li>Authors of the <a href="https://github.com/pages-themes/cayman">Cayman</a> Jekyll Theme .</li>
+</ul>
+
+
+      <footer class="site-footer">
+       
+        <span class="site-footer-owner"><a href="https://github.com/abhishekbalam/iplocationapi">IP Location API </a> is maintained by <a href="https://github.com/abhishekbalam/">Abhishek Balam</a>.</span>
+        <span class="site-footer-credits">This site is made with &hearts; using <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. </span>
+      
+      </footer>
+    </section>
+  </body>
+</html>

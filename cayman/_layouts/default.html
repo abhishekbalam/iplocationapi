@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+  
+    <title>{{ site.title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWh7E-G5TGau8UPzE2fK0Ld60cDh_tVBI&callback=initMap"></script>
+
+    <script src="{{ '/assets/js/index.js' | relative_url }}"></script>
+    
+  </head>
+  <body>
+    
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Details for IP: <span id="ipadd"></span></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#mapsection">Map</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane container active" id="details">
+                <br>
+                <table class="table table-bordered table-striped text-center">
+                  <thead>
+                    <th>Property</th>
+                    <th>Value</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>AS</td>
+                        <td id="as">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>ISP</td>
+                        <td id="isp">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Lat/Long</td>
+                        <td id="latlng">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>City</td>
+                        <td id="city">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Region</td>
+                        <td id="region">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Country</td>
+                        <td id="country">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>Time Zone</td>
+                        <td id="timezone">lorem</td>
+                    </tr>  
+                    <tr>
+                        <td>ZIP</td>
+                        <td id="zip">lorem</td>
+                    </tr>  
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="tab-pane container fade" id="mapsection">
+                <br>
+                <div id="map" style="padding:0 0 ;height:70vh; width:auto"></div>
+              </div>
+            </div>
+            
+           
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="page-header">
+      <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+          <a href="https://github.com/abhishekbalam/openlicensesapi" class="btn">View on GitHub</a>
+        {% if site.show_downloads %}
+          <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+          <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+        {% endif %}
+    </section>
+
+    <section class="main-content">
+      {{ content }}
+
+      <footer class="site-footer">
+       
+        <span class="site-footer-owner"><a href="https://github.com/abhishekbalam/openlicensesapi">Open License API </a> is maintained by <a href="https://github.com/abhishekbalam/">Abhishek Balam</a>.</span>
+        <span class="site-footer-credits">This site is made with &hearts; using <a href="https://jekyllrb.com/" target="_blank">Jekyll</a>. </span>
+      
+      </footer>
+    </section>
+  </body>
+</html>
