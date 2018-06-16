@@ -12,12 +12,12 @@ def main():
 @app.route('/locate/<ip>')	
 def lookup(ip):
 	data=requests.get('http://ip-api.com/json/'+ip).content
-	return jsonify(data)
+	return data
 
 @app.route('/mine')	
 def mine():
 	data=requests.get('http://ip-api.com/json/'+request.remote_addr).content
-	return jsonify(data)
+	return data
 
 if __name__ == '__main__':
 	app.jinja_env.auto_reload = True
