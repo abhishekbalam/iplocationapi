@@ -12,11 +12,13 @@ def main():
 @app.route('/locate/<ip>')	
 def lookup(ip):
 	data=requests.get('http://ip-api.com/json/'+ip).content
+	print(data+'')
 	return data
 
 @app.route('/mine')	
 def mine():
 	data=requests.get('http://ip-api.com/json/'+request.remote_addr).content
+	print(data+'')
 	return data
 
 if __name__ == '__main__':
